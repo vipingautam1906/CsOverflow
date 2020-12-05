@@ -1,0 +1,28 @@
+a{
+    color: white;
+    font-family: sans-serif;
+    display: flex;
+    align-content: center;
+}
+
+.navbar{
+    background-color: #122228;
+    height: 50px;
+    align-content: center;
+
+}
+
+button{
+    color: white;
+    background-color: transparent;
+}
+
+.nav-item{
+    opacity: 0.6;
+    transition: 0.3s;
+}
+.nav-item:hover {opacity: 1}
+
+li{
+    cursor: pointer;
+}

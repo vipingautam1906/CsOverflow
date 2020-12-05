@@ -1,0 +1,242 @@
+<div class="container-fluid">
+    <div>
+        <div class="col">
+            <div *ngIf="InputFromParent == 'questions'">
+                <label> Recent Questions </label>
+                <hr>
+                <div class="card" *ngFor="let idx of question, index as i">
+                    <div class="card-header">
+                        {{ i+1  }})   {{ idx.category }}
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <footer class="blockquote-footer"><cite title="Source Title">{{ idx.question_data }} </cite></footer>
+                        </blockquote>
+                        <div class="float-right">
+                            <button class="btn btn-outline-secondary" type="submit" (click)="onClickCurrentQuestion(idx)">View Or Answer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="InputFromParent == 'subjects'">
+            <label> Browse Categories </label>
+            <hr>
+            <div class="col-8">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item list-group-item-action">Digital Logic</li>
+                    <li class="list-group-item list-group-item-action">Programming and DS</li>
+                    <li class="list-group-item list-group-item-action">Algorithms</li>
+                    <li class="list-group-item list-group-item-action">Computer Organisation and Architecture</li>
+                    <li class="list-group-item list-group-item-action">Engineering Mathematics</li>
+                    <li class="list-group-item list-group-item-action">Descrete Mathematics</li>
+                    <li class="list-group-item list-group-item-action">Database Management Systems</li>
+                    <li class="list-group-item list-group-item-action">Theory Of Computation</li>
+                    <li class="list-group-item list-group-item-action">compiler Design</li>
+                    <li class="list-group-item list-group-item-action">Computer Networks</li>
+                </ul>
+            </div>
+        </div >
+
+        <div *ngIf="InputFromParent == 'users'">
+            <div class="row-cols-8">
+                <table class="table table-hover">
+                    <thead>
+                    <tr style="text-align: center; color: dimgray">
+                        <th scope="col"></th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Email Id</th>
+                    </tr>
+                    </thead>
+                    <tbody *ngFor="let us of users, index as i">
+                        <tr style="text-align: center">
+                            <td>{{ i+1 }}</td>
+                            <td> {{ us.firstname }}</td>
+                            <td>{{ us.lastname }}</td>
+                            <td>{{ us.emailid }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div *ngIf="InputFromParent == 'blogs'">
+            Blogs
+            <hr>
+            <div class="card text-center" *ngFor="let blog of blogs">
+                <div class="card-header">
+                   By- {{ blog.firstname }} {{ blog.lastname }}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Category {{ blog.category }}</h5>
+                    <p class="card-text">{{ blog.content }}</p>
+                    <p class="card-text float-right"  style="color: grey">{{ blog.cdate }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="InputFromParent == 'postBlog'">
+            <div class="alert alert-danger" role="alert">
+                <p>Please post only legitimate posts, Any content that can be even minutely classified as obscene, vulgar or inappropriate;
+                will lead to the banning of the profile.</p>
+            </div>
+            <form class="form-group" [formGroup]="blogsForm">
+                <label>New Post</label>
+                <hr>
+                <label> Choose the Category for your post</label>
+                <select class="form-control" style="width: min-content" formControlName="blogCategory" >
+                    <option >Testimonials</option>
+                    <option >Motivation</option>
+                    <option >Interview Experience</option>
+                    <option >Preparation Experience</option>
+                    <option >Jobs</option>
+                    <option >Anouncements</option>
+                    <option >Jobs</option>
+                    <option >Digital Logic</option>
+                    <option>Programming and Datastructures</option>
+                    <option>Algorithms</option>
+                    <option>Computer Organisation and Architecture</option>
+                    <option>Engineering Mathematics</option>
+                    <option>Descrete Mathematics</option>
+                    <option>Database Management Systems</option>
+                    <option>Theory Of Computation</option>
+                    <option>compiler Design</option>
+                    <option>Computer Networks</option>
+                    <option>Miscellaneous</option>
+                </select>
+                <label>Post Content</label>
+                <textarea class="form-control" rows="6" formControlName="postContent">Hi, Here you can describe more..</textarea>
+                <hr>
+                <button class="btn btn-primary" type="submit" (click)="onClickSubmitPost()">Publish Post</button>
+            </form>
+        </div>
+
+        <div *ngIf="InputFromParent == 'addQuestion' ">
+            <label >Category:</label>
+            <form class="form-group" [formGroup]="formGroup">
+                <select class="form-control" formControlName="qCategory" >
+                    <option >Digital Logic</option>
+                    <option>Programming and Datastructures</option>
+                    <option>Algorithms</option>
+                    <option>Computer Organisation and Architecture</option>
+                    <option>Engineering Mathematics</option>
+                    <option>Descrete Mathematics</option>
+                    <option>Database Management Systems</option>
+                    <option>Theory Of Computation</option>
+                    <option>compiler Design</option>
+                    <option>Computer Networks</option>
+                    <option>Miscellaneous</option>
+                </select>
+                <label >Description:</label>
+                            <textarea  pInputText
+                                   class="form-control"
+                                   placeholder="Type the question Description"
+                                       formControlName="description" required rows="3"></textarea>
+                <label >Image: </label>
+                            <input type="file" class="form-control-file" (change)="fileEvent($event)"><hr>
+                            <button class="btn btn-primary" (click)="onAddQuestion('receivedQuestion')" label="Save" type="submit">
+                                Save
+                            </button>
+            </form>
+        </div>
+    </div>
+
+    <div *ngIf="InputFromParent == 'individualQuestions'">
+        <div class="card text-center">
+            <div class="card-header">
+               <p> Category:    {{ currentQuestion.category }} </p>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8">
+                        <p class="card-text" align="left">{{ currentQuestion.question_data }}</p>
+                    </div>
+                    <div class="col">
+                        <div class="row ">
+                            <img src="{{ currentQuestion.url }}" class="img-fluid">
+                        </div>
+                        <div class="row">
+                            <a href="{{ currentQuestion.url }}" target="_blank" class="float-right">Download Attachment</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <p style="text-align: right; color: grey">
+                    Logged by user with user Id:{{ currentQuestion.userId }}
+                </p>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ul class="list-inline" style="float: right">
+                    <li class="list-inline-item" (click)="isAuth('answer')" >Add Answer</li>
+                    <li class="list-inline-item" (click)="isAuth('comment')">Comment</li>
+                </ul>
+            </div>
+            <div class="col">
+                <form [formGroup]="answersform">
+                    <div *ngIf="isUserAuth && inputFromClick == 'answer'">
+                        <textarea type="text" class="form-control"
+                                  formControlName="answer"
+                                  rows="4" placeholder="Your answer goes here!">
+                       </textarea>
+                        <hr>
+                        <button class="btn btn-info" type="submit" (click)="onAddAnswer()">Add Answer</button>
+                    </div>
+                    <div *ngIf="isUserAuth && inputFromClick == 'comment'">
+                        <textarea type="text" class="form-control"
+                                  formControlName="comment"
+                                  placeholder="Your comment goes here!" >
+                        </textarea>
+                        <hr>
+                        <button class="btn btn-info" type="submit" (click)="onAddComment()">Add Comment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+                    <p style="font-size: larger; text-align: right;">{{ warningMsg }}</p>
+            </div>
+        </div>
+        <div class="container">
+            <div *ngFor="let idx of commentsArray">
+                <div  *ngIf="idx.questionid  == currentQuestion.id "  >
+                    <div class="col" align="left">
+                        <span>{{ idx.username }}</span> <div class="date"> {{ idx.cdate }} </div> commented:
+                        <p>
+                            {{ idx.commentdata }}
+                        </p>
+                    </div>
+                    <hr>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="alertSuccess" role="alertdialog" >
+                <p style="color: white"> Answers </p>
+            </div>
+            <div *ngFor="let answer of answerArray">
+                <div *ngIf=" answer.questionid == currentQuestion.id ">
+                    <span> {{ answer.username }} </span>  <div class="date"> {{ answer.cdate }} </div>  answered:
+                    <p>
+                        {{ answer.answerdata }}
+                    </p>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="InputFromParent == 'dashboard'  ">
+        <app-userhome></app-userhome>
+    </div>
+
+    <div *ngIf="InputFromParent ==''">
+        <app-landingpage></app-landingpage>
+    </div>
+
+</div>

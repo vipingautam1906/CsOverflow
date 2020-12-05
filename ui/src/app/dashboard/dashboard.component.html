@@ -1,0 +1,33 @@
+<div class="cardStyle">
+    <img src="/assets/avatar-pngrepo-com.png" style="width:50%;" >
+    <div class="container-fluid">
+        <h4><b>  {{ userName }} {{ lastName }} </b></h4>
+        <p>{{ userEmailId }}</p>
+    </div>
+</div>
+<hr>
+<div class="col">
+    <div class="form-group">
+        <form [formGroup]="updateForm">
+            <label >Phone No:</label>
+            <input type="text"
+                   class="form-control"
+                   placeholder="Update Number"
+                   formControlName="pnumber">
+            <label >Password:</label>
+            <input type="text"
+                   class="form-control"
+                   placeholder="Update Password"
+                   formControlName="upassword">
+            <label >College Name:</label>
+            <input type="text"
+                   class="form-control"
+                   placeholder="Update College Name"
+                   formControlName="cname">
+            <hr>
+            <button type="submit"
+                    class="btn btn-primary" (click)="onClickSave()">Save Changes
+            </button>
+        </form>
+    </div>
+</div>

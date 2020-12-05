@@ -1,0 +1,44 @@
+
+
+li{
+    cursor: pointer;
+    color: dimgray;
+}
+
+li:hover {
+    color: black;
+}
+
+span{
+    color: dodgerblue;
+    font-weight: bolder;
+    font-size: 15px;
+}
+
+.alertSuccess{
+    background-color: #00CC66;
+    height: 35px;
+    padding-left: 10px;
+    padding-top: 5px;
+    box-sizing: border-box;
+}
+
+img{
+    height: 50%;
+    width: 50%;
+    float: right
+}
+.date{
+    color: grey;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 100%;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+

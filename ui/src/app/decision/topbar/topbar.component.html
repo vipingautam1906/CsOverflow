@@ -1,0 +1,68 @@
+<div *ngIf="isAuthenticated">
+    <div class="row-cols-1">
+        <nav class="navbar fixed-top">
+            <a class="navbar-brand" routerLink="/">
+                <img width="200px" src="assets/logo.png">
+            </a>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" (click)="goTo('dashboard')">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="goTo('logout')">Logout</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <hr style="margin: 3em auto;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2">
+                <app-leftsidebar (clickInLeftSidePanel)="onclickleftsidepanel($event)"></app-leftsidebar>
+            </div>
+            <div class="col-7">
+                <app-questions [InputFromParent] = 'msgfromLeftpanel' ></app-questions>
+            </div>
+            <div class="col-3">
+                <app-dashboard></app-dashboard>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!isAuthenticated">
+    <div class="row">
+        <div class="col">
+            <nav class="navbar fixed-top" >
+                <div class="navbar-header">
+                    <a class="navbar-brand" routerLink="/">
+                        <img width="200px" src="assets/logo.png">
+                    </a>
+                </div>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/register" >Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/login" >Login</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <hr style="margin: 3em auto;">
+    <div class="row">
+        <div class="col-2">
+            <app-leftsidebar (clickInLeftSidePanel)="onclickleftsidepanel($event)"></app-leftsidebar>
+        </div>
+        <div class="col-7">
+            <div>
+                <app-questions [InputFromParent] = 'msgfromLeftpanel' ></app-questions>
+            </div>
+        </div>
+        <div class="col-3">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+

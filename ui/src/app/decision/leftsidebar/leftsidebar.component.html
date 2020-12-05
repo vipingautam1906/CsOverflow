@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col" style="width: 250px">
+            <ul class="list-group list-group-flush " style="text-align: center">
+                <li *ngIf="check" class="list-group-item list-group-item-action" (click)="onClickLeftPanel('dashboard')">
+                    My Account
+                </li>
+                <li class="list-group-item list-group-item-action" (click)="onClickLeftPanel('questions')">
+                    Questions
+                </li>
+                <li class="list-group-item list-group-item-action" (click)="onClickLeftPanel('subjects')">
+                    Subjects
+                </li>
+                <li class="list-group-item list-group-item-action" (click)="onClickLeftPanel('users')">
+                    Users
+                </li>
+                <li class="list-group-item list-group-item-action" (click)="onClickLeftPanel('blogs')">
+                    Blogs
+                </li>
+                <li *ngIf="check" class="list-group-item list-group-item-action" (click)="onClickLeftPanel('postBlog')">
+                    New Blogs
+                </li>
+                <li *ngIf="check" class="list-group-item list-group-item-action" (click)="onClickLeftPanel('addQuestion')">
+                    <img width="50px" src="assets/QNA-Transparent-Background.png">Add Question</li>
+            </ul>
+        </div>
+    </div>
+</div>

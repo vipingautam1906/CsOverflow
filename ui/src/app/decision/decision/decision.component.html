@@ -1,0 +1,8 @@
+<div *ngIf="forAuthUser">
+    <app-topbar app-topbar [isAuthenticated]=true></app-topbar>
+</div>
+
+<div *ngIf="!forAuthUser">
+    <app-topbar [isAuthenticated]=false></app-topbar>
+</div>
+

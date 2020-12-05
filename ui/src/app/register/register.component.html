@@ -1,0 +1,97 @@
+<div class="container">
+    <div class="card">
+        <article class="card-body">
+            <h4 class="card-title text-center mb-4 mt-1" >Sign up</h4><hr>
+            <form [formGroup]="registrationForm">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="First Name" formControlName="fname"
+                               [ngClass]="{'is-invalid': registrationForm.get('fname').touched && registrationForm.get('fname').invalid }">
+                        <div class="invalid-feedback" *ngIf="registrationForm.get('fname').touched && registrationForm.get('fname').invalid ">
+                            <p>first name cannot be left empty</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Last Name" formControlName="lname"
+                               [ngClass]="{'is-invalid': registrationForm.get('lname').touched && registrationForm.get('lname').invalid }">
+                        <div class="invalid-feedback" *ngIf="registrationForm.get('lname').touched && registrationForm.get('lname').invalid">
+                            <p>Last name name cannot be left empty</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input type="email" class="form-control" placeholder="Email Id" formControlName="email"
+                               [ngClass]="{'is-invalid': registrationForm.get('email').touched && registrationForm.get('email').invalid } ">
+                        <div class="invalid-feedback" *ngIf="registrationForm.get('email').touched && registrationForm.get('email').invalid ">
+                            <p *ngIf="registrationForm.get('email').errors.required ">Email Address is required</p>
+                            <p *ngIf="registrationForm.get('email').errors.email ">Email must be a valid Email Address</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input type="password" class="form-control" placeholder="Password" formControlName="pass"
+                               [ngClass]="{'is-invalid': registrationForm.get('pass').touched && registrationForm.get('pass').invalid }" >
+                        <div class="invalid-feedback" *ngIf="registrationForm.get('pass').touched && registrationForm.get('pass').invalid">
+                            <p *ngIf="registrationForm.get('pass').errors.required">Password field cannot be left empty</p>
+                            <p *ngIf="registrationForm.get('pass').errors.minlength" >Password length should be atleast 6 characters</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="College Name" formControlName="cname"
+                               [ngClass]="{'is-invalid': registrationForm.get('cname').touched && registrationForm.get('cname').invalid }" >
+                        <div class="invalid-feedback" *ngIf="registrationForm.get('cname').touched && registrationForm.get('cname').invalid ">
+                            <p>Atleast Enter your College or University name.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input type="number" class="form-control" placeholder="Phone Number" formControlName="pnumber"
+                               [ngClass]="{'is-invalid': registrationForm.get('pnumber').touched && registrationForm.get('pnumber').invalid }">
+                        <div class="invalid-feedback" *ngIf="registrationForm.get('pnumber').touched && registrationForm.get('pnumber').invalid ">
+                            <p *ngIf="registrationForm.get('pnumber').errors.required">Enter your number to carry on with registration.</p>
+                            <p *ngIf="registrationForm.get('pnumber').errors.pattern">Invalid Mobile number</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <textarea class="form-control" formControlName="aboutme" placeholder="Something about yourself"
+                                  [ngClass]="{'is-invalid': registrationForm.get('aboutme').touched && registrationForm.get('aboutme').invalid }" ></textarea>
+                            <div class="invalid-feedback" *ngIf="registrationForm.get('aboutme').touched && registrationForm.get('aboutme').invalid">
+                                <p>Tell us something about yourself.</p>
+                            </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block"  (click)="postUser()" [disabled]="!registrationForm.valid">Register</button>
+            </form>
+        </article>
+    </div>
+</div>
